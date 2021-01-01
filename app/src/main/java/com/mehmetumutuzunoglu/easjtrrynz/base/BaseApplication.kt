@@ -8,6 +8,10 @@ import org.koin.core.context.startKoin
 
 class BaseApplication : Application() {
 
+    companion object {
+        const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
+    }
+
     override fun onCreate() {
         super.onCreate()
         startKoin {
