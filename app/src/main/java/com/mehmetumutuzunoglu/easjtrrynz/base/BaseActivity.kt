@@ -1,4 +1,4 @@
-package com.mehmetumutuzunoglu.easjtrrynz.base.di
+package com.mehmetumutuzunoglu.easjtrrynz.base
 
 import androidx.appcompat.app.AppCompatActivity
 
