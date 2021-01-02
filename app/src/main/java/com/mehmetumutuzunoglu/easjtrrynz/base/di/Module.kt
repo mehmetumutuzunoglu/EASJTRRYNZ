@@ -2,8 +2,8 @@ package com.mehmetumutuzunoglu.easjtrrynz.base.di
 
 import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.TvShowsRepository
 import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.TvShowsViewModel
-import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.detail.TvShowDetailRepository
-import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.detail.TvShowDetailViewModel
+import com.mehmetumutuzunoglu.easjtrrynz.feature.detail.TvShowDetailRepository
+import com.mehmetumutuzunoglu.easjtrrynz.feature.detail.TvShowDetailViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

@@ -1,4 +1,4 @@
-package com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.detail
+package com.mehmetumutuzunoglu.easjtrrynz.feature.detail
 
 import com.mehmetumutuzunoglu.easjtrrynz.base.ApiClient
 

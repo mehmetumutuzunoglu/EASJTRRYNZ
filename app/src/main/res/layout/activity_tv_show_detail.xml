@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.detail.TvShowDetailViewModel" />
+            type="com.mehmetumutuzunoglu.easjtrrynz.feature.detail.TvShowDetailViewModel" />
 
     </data>
 

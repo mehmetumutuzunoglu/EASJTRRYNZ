@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mehmetumutuzunoglu.easjtrrynz.R
 import com.mehmetumutuzunoglu.easjtrrynz.base.BaseActivity
 import com.mehmetumutuzunoglu.easjtrrynz.databinding.ActivityTvShowsListBinding
-import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.detail.TvShowDetailActivity
+import com.mehmetumutuzunoglu.easjtrrynz.feature.detail.TvShowDetailActivity
 import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.list.TvShowsAdapter
 import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.list.TvShowsScrollListener
 import org.koin.android.viewmodel.ext.android.viewModel
