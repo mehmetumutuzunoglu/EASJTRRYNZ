@@ -17,6 +17,9 @@ data class PopularTvListResponse(
 )
 
 data class TvData(
+    @SerializedName("id")
+    val id: Int?,
+
     @SerializedName("backdrop_path")
     val backdropPath: String?,
 

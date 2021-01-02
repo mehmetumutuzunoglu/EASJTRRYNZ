@@ -6,15 +6,18 @@ import androidx.lifecycle.ViewModel
 import com.mehmetumutuzunoglu.easjtrrynz.base.components.TvShowItemViewData
 import com.mehmetumutuzunoglu.easjtrrynz.base.model.PopularTvListResponse
 import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.list.TvShowItem
+import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.list.TvShowsItemClickListener
 import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.list.TvShowsScrollListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class TvShowsViewModel(private val tvShowsRepository: TvShowsRepository) : ViewModel(),
-    TvShowsScrollListener.TvShowsScrollHandler {
+    TvShowsScrollListener.TvShowsScrollHandler, TvShowsItemClickListener {
 
     val setAdapterLiveData = MutableLiveData<List<TvShowItem>>()
+
+    val itemClickLiveData = MutableLiveData<Int>()
 
     var loading = false
 
@@ -30,6 +33,7 @@ class TvShowsViewModel(private val tvShowsRepository: TvShowsRepository) : ViewM
                     setAdapterLiveData.value = it.results?.map { item ->
                         TvShowItem(
                             TvShowItemViewData(
+                                itemId = item.id,
                                 imageUrl = item.posterPath,
                                 name = item.name,
                                 description = item.overview,
@@ -50,5 +54,9 @@ class TvShowsViewModel(private val tvShowsRepository: TvShowsRepository) : ViewM
 
     override fun isLoading() = loading
 
-
+    override fun onItemClick(itemId: Int?) {
+        itemId?.let {
+            itemClickLiveData.value = it
+        }
+    }
 }

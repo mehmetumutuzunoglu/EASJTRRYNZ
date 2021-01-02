@@ -1,5 +1,6 @@
 package com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mehmetumutuzunoglu.easjtrrynz.R
 import com.mehmetumutuzunoglu.easjtrrynz.base.BaseActivity
 import com.mehmetumutuzunoglu.easjtrrynz.databinding.ActivityTvShowsListBinding
+import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.detail.TvShowDetailActivity
 import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.list.TvShowsAdapter
 import com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow.list.TvShowsScrollListener
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -31,9 +33,9 @@ class TvShowsActivity : BaseActivity() {
 
     private fun setUI() {
         binding.tvShowsList.run {
-            adapter = TvShowsAdapter()
+            adapter = TvShowsAdapter(viewModel)
             tvShowsScrollListener = TvShowsScrollListener(viewModel).apply {
-                linearLayoutManager =  binding.tvShowsList.layoutManager as? LinearLayoutManager
+                linearLayoutManager = binding.tvShowsList.layoutManager as? LinearLayoutManager
                 tvShowsScrollHandler = viewModel
             }
 
@@ -44,12 +46,18 @@ class TvShowsActivity : BaseActivity() {
         viewModel.run {
             getTvShowsList()
 
-            setAdapterLiveData.observe(this@TvShowsActivity, Observer {list ->
+            setAdapterLiveData.observe(this@TvShowsActivity, Observer { list ->
                 (binding.tvShowsList.adapter as? TvShowsAdapter)?.addList(list)
                 tvShowsScrollListener?.let {
                     it.pageSize = list.size
                     binding.tvShowsList.addOnScrollListener(it)
                 }
+            })
+
+            itemClickLiveData.observe(this@TvShowsActivity, Observer {
+                startActivity(Intent(this@TvShowsActivity, TvShowDetailActivity::class.java).apply {
+                    putExtra(ITEM_ID, it)
+                })
             })
         }
     }
