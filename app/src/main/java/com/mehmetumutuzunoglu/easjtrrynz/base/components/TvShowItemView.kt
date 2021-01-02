@@ -20,7 +20,7 @@ class TvShowItemView @JvmOverloads constructor(
     desStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, desStyleAttr) {
 
-    val binding: ViewTvShowItemBinding = DataBindingUtil.inflate(
+    private val binding: ViewTvShowItemBinding = DataBindingUtil.inflate(
         LayoutInflater.from(context),
         R.layout.view_tv_show_item,
         this,

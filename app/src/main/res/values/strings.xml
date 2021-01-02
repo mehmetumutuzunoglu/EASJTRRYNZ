@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EASJTRRYNZ</string>
+
+    <string name="error_dialog_title">Hata</string>
+    <string name="error_dialog_message">Bir sorun oluştu. Lütfen tekrar deneyiniz</string>
+    <string name="error_dialog_button_text">Tamam</string>
 </resources>

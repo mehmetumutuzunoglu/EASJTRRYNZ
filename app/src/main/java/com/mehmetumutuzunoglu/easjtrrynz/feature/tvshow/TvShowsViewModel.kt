@@ -1,6 +1,7 @@
 package com.mehmetumutuzunoglu.easjtrrynz.feature.tvshow
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mehmetumutuzunoglu.easjtrrynz.base.components.TvShowItemViewData
@@ -15,9 +16,14 @@ import retrofit2.Response
 class TvShowsViewModel(private val tvShowsRepository: TvShowsRepository) : ViewModel(),
     TvShowsScrollListener.TvShowsScrollHandler, TvShowsItemClickListener {
 
-    val setAdapterLiveData = MutableLiveData<List<TvShowItem>>()
+    private val setAdapterMutableLiveData = MutableLiveData<List<TvShowItem>>()
+    val setAdapterLiveData: LiveData<List<TvShowItem>> get() = setAdapterMutableLiveData
 
-    val itemClickLiveData = MutableLiveData<Int>()
+    private val itemClickMutableLiveData = MutableLiveData<Int>()
+    val itemClickLiveData: LiveData<Int> get() = itemClickMutableLiveData
+
+    private val errorDialogMutableLiveData = MutableLiveData<Unit>()
+    val errorDialogLiveData: LiveData<Unit> get() = errorDialogMutableLiveData
 
     var loading = false
 
@@ -30,33 +36,37 @@ class TvShowsViewModel(private val tvShowsRepository: TvShowsRepository) : ViewM
                 response: Response<PopularTvListResponse>
             ) {
                 response.body()?.let {
-                    setAdapterLiveData.value = it.results?.map { item ->
-                        TvShowItem(
-                            TvShowItemViewData(
-                                itemId = item.id,
-                                imageUrl = item.posterPath,
-                                name = item.name,
-                                description = item.overview,
-                                rating = item.voteAverage.toString()
-                            )
-                        )
-                    }
+                   handleData(it)
                 }
                 loading = false
             }
 
             override fun onFailure(call: Call<PopularTvListResponse>, t: Throwable) {
-                Log.e("FAIL", "HATA")
+                errorDialogMutableLiveData.value = Unit
                 loading = false
             }
         })
+    }
+
+    private fun handleData(result : PopularTvListResponse){
+        setAdapterMutableLiveData.value = result.results?.map { item ->
+            TvShowItem(
+                TvShowItemViewData(
+                    itemId = item.id,
+                    imageUrl = item.posterPath,
+                    name = item.name,
+                    description = item.overview,
+                    rating = item.voteAverage.toString()
+                )
+            )
+        }
     }
 
     override fun isLoading() = loading
 
     override fun onItemClick(itemId: Int?) {
         itemId?.let {
-            itemClickLiveData.value = it
+            itemClickMutableLiveData.value = it
         }
     }
 }

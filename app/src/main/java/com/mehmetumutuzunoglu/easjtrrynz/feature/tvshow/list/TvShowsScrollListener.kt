@@ -9,7 +9,7 @@ class TvShowsScrollListener(
 ) : RecyclerView.OnScrollListener() {
 
 
-    var currentPage = 1
+    private var currentPage = 1
     var linearLayoutManager: LinearLayoutManager? = null
     var tvShowsScrollHandler: TvShowsScrollHandler? = null
     var pageSize: Int? = null

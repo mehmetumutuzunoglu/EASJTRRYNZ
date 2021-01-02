@@ -23,36 +23,51 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{viewModel.imageUrlObservable}" />
+            app:loadImage="@{viewModel.imageUrlObservable}"
+            app:visibility="@{viewModel.imageUrlObservable}" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@{viewModel.nameObservable}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/rating"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/poster_image" />
+            app:layout_constraintTop_toBottomOf="@id/poster_image"
+            app:visibility="@{viewModel.nameObservable}" />
 
         <TextView
             android:id="@+id/rating"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
             android:gravity="end"
             android:text="@{viewModel.ratingObservable}"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/name"
-            app:layout_constraintTop_toBottomOf="@id/poster_image" />
+            app:layout_constraintTop_toBottomOf="@id/poster_image"
+            app:visibility="@{viewModel.ratingObservable}" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
             android:text="@{viewModel.descriptionObservable}"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name" />
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:visibility="@{viewModel.descriptionObservable}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

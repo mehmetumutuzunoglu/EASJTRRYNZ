@@ -19,3 +19,8 @@ fun ImageView.load(url: String?) {
     }
 }
 
+@BindingAdapter("app:visibility")
+fun View.setVisibility(data: Any?) {
+    visibility = if (data != null) View.VISIBLE else View.GONE
+}
+

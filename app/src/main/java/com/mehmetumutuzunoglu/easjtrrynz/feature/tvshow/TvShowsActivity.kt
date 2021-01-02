@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mehmetumutuzunoglu.easjtrrynz.R
 import com.mehmetumutuzunoglu.easjtrrynz.base.BaseActivity
@@ -46,7 +45,7 @@ class TvShowsActivity : BaseActivity() {
         viewModel.run {
             getTvShowsList()
 
-            setAdapterLiveData.observe(this@TvShowsActivity, Observer { list ->
+            setAdapterLiveData.observe(this@TvShowsActivity, { list ->
                 (binding.tvShowsList.adapter as? TvShowsAdapter)?.addList(list)
                 tvShowsScrollListener?.let {
                     it.pageSize = list.size
@@ -54,10 +53,14 @@ class TvShowsActivity : BaseActivity() {
                 }
             })
 
-            itemClickLiveData.observe(this@TvShowsActivity, Observer {
+            itemClickLiveData.observe(this@TvShowsActivity, {
                 startActivity(Intent(this@TvShowsActivity, TvShowDetailActivity::class.java).apply {
                     putExtra(ITEM_ID, it)
                 })
+            })
+
+            errorDialogLiveData.observe(this@TvShowsActivity, {
+                showErrorDialog()
             })
         }
     }
